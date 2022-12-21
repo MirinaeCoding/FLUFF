@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html data-theme="valentine" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/output.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <title>FLUFF - Sign up</title>
+</head>
+<body>
+
+<div class="grid grid-cols-3 gap-4">
+
+    <div class="01"></div>
+
+    <div class="mt-20">
+        <div class="justify-center">
+        <img src="../images/logo/fluff-logo.png" alt="">
+    </div>
+
+        <form action="" method="POST">
+
+            <div class="form-control m-12">
+                <p class="text-2xl font-bold">SIGN UP</p>
+                <label class="input-group input-group-vertical mt-5">
+                    <span class="font-bold">Username</span>
+                    <input type="text" placeholder="Type here" class="input input-bordered" name="id"/>
+                </label>
+
+                <label class="input-group input-group-vertical mt-5">
+                    <span class="font-bold">Password</span>
+                    <input type="text" placeholder="Type here" class="input input-bordered" name="password"/>
+                </label>
+
+                <label class="input-group input-group-vertical mt-5">
+                    <span class="font-bold">Password confirmation</span>
+                    <input type="text" placeholder="Type here" class="input input-bordered" name="password_confirm"/>
+                </label>
+
+                <label class="input-group input-group-vertical mt-5">
+                    <span class="font-bold">Email</span>
+                    <input type="email" placeholder="Type here" class="input input-bordered" name="email"/>
+                </label>
+
+                <input class="btn mt-7" type="submit" value="Sign up" name="sign_up_button">
+                <div class="flex">
+                <a href="./sign_in.php"><button class="btn btn-ghost">or Sign in</button></a>
+                </div>
+
+            </div>
+
+        </form>
+
+            <?php
+
+            require('../controller/controller.php');
+            $controller = new controller();
+
+            if(isset($_POST['sign_up_button'])){
+                $controller->sign_up($_POST['id'], $_POST['password'], $_POST['password_confirm'], $_POST['email']);
+            }
+
+
+            if(isset($_GET["passworderror"])){ ?>
+            
+                <div class="alert alert-error shadow-lg mt-5">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Passwords don't match. Please try again.</span>
+                    </div>
+                </div>
+
+            <?php 
+            } 
+
+            if(isset($_GET["iderror"])){ ?>
+            
+                <div class="alert alert-error shadow-lg mt-5">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Username already used. Please try something else.</span>
+                    </div>
+                </div>
+
+            <?php 
+            } 
+
+            if(isset($_GET["emailerror"])){ ?>
+            
+                <div class="alert alert-error shadow-lg mt-5">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Email already used. Please try something else.</span>
+                    </div>
+                </div>
+
+            <?php 
+            } 
+
+            if(isset($_GET["success"])){ ?>
+            
+                <div class="alert alert-success shadow-lg">
+                    <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Account succesfully created !</span>
+                    </div>
+                </div>
+
+            <?php 
+            } 
+
+
+            ?>
+
+            
+
+    </div>
+
+    <div class="03"></div>
+
+</div>
+
+    
+</body>
+</html>
